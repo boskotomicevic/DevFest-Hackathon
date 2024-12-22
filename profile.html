@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <<style>
+        .parcel-info-box, .parcel-information-box, .parcel-image-box {
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px; /* Space above */
+            margin-bottom: 40px; /* Increased space below */
+        }
+    </style>
+    
+    
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Sidebar (Taskbar) -->
+            <div class="col-md-3 col-lg-2 bg-light sidebar p-3">
+                <h3>Profile Menu</h3>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Parcel Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-md-9 col-lg-10">
+                <div class="container mt-4">
+                    <!-- Title Row -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 parcel-information-box">
+                            <h2>Parcel Information</h2>
+
+                            <form id="coordinates-form" class="mb-4">
+                                <div class="row">
+                                    <!-- Longitude Field -->
+                                    <div class="col-md-12 mb-3">
+                                        <label for="longitude" class="form-label">Longitude:</label>
+                                        <input type="number" class="form-control" id="longitude" name="longitude" required>
+                                    </div>
+                                    <!-- Latitude Field -->
+                                    <div class="col-md-12 mb-3">
+                                        <label for="latitude" class="form-label">Latitude:</label>
+                                        <input type="number" class="form-control" id="latitude" name="latitude" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Get Parcel Info</button>
+                                <iframe width="400px" height="400px" src=""></iframe>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6 parcel-info-box">
+                            <h2>Basic Parcel Information</h2>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Parcel ID:</strong> 12345</li>
+                                <li class="list-group-item"><strong>Size:</strong> 5 hectares</li>
+                                <li class="list-group-item"><strong>Owner:</strong> John Doe</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Row for Parcel Image -->
+                    <div class="row">
+                        <!-- Parcel Image Section -->
+                        <div class="col-md-12 parcel-image-box">
+                            <h3>My Frame (Parcel Image)</h3>
+                            <img id="myFrame" src="" alt="Parcel Image" class="img-fluid" style="max-width: 100%; display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for handling form submission and image generation -->
+    <script>
+        document.getElementById('coordinates-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the input values for longitude and latitude
+            var longitude = document.getElementById('longitude').value;
+            var latitude = document.getElementById('latitude').value;
+
+            // Display the coordinates in the parcel info
+            document.getElementById('parcel-latitude').textContent = latitude;
+            document.getElementById('parcel-longitude').textContent = longitude;
+
+            // Generate the image URL for the "myFrame"
+            var frameImageUrl = `https://your-image-source.com/${latitude},${longitude}.jpg`; // Example URL format
+            var myFrame = document.getElementById('myFrame');
+            myFrame.src = frameImageUrl;
+
+            // Display the image
+            myFrame.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
